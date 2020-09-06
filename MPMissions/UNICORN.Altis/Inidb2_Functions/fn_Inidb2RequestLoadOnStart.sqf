@@ -16,9 +16,9 @@
 			_dataplayruid
 		];
 		publicVariableServer "un_database_check";
-		player setUnitLoadout [[],[],[],["U_IG_Guerilla1_1",[[""],[],[],[],[]]],[],[],"SAN_Headlamp_v2","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
+		player setUnitLoadout [[],[],[],["U_IG_Guerilla1_1",[[""],[],[],[],[]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		player switchCamera "EXTERNAL";
-		[[0.65, 1, 0.2, 0.15], 1.0, true, 0] call BRG_fnc_Activate_GUI_MONEY;
+		[[0.65, 1, 0.2, 0.15], 1.0, true, 5000] call BRG_fnc_Activate_GUI_MONEY;
 		CurrentMoneyAmount = 0;
 		titleFadeOut 5;
     };

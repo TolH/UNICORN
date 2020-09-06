@@ -10,6 +10,7 @@ waitUntil {time > 1};
 	PARACHUTE_IN_USE = 0;
 	ABILITY_COOLDOWN_SJUMP_ACTIVE = 0;
 	PLAYERISBUILDING = 0;
+	PLAYEROBJECTMOVE = 0;
 //NAMEPLATE AND MISC TO BE ADDED
 	//addMissionEventHandler ["Draw3D", {[3200] call BRG_fnc_StartCustomNameplate;}];
 //ACTIVATE SJUMP GUI

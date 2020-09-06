@@ -1,7 +1,8 @@
-//Starts the Initialization of Server code For TIMS.
+//Starts the Initialization of Server code For @INIDBI2.
 	if (isServer) then 
 	{
-		[] ExecVM "@inidbi2\InitServer\INIDB_Server_0908_BRG_Altis.sqf";
+		[] ExecVM "@inidbi2\InitServer\INIDB_Server_UNICORN_Altis.sqf";
+		//SET SERVER TIME MULTIPLIER. 60 MAX
 		setTimeMultiplier 40;
 	};
 //REMOVE DEAD PLAYER BODIES WHEN THEY DISCONNECT
