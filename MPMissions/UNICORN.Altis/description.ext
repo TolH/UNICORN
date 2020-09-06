@@ -1,0 +1,177 @@
+#include "TBB\defines.hpp"
+#include "TBB\control.hpp"
+///////////////////////////////////////////////////////////////////////////////
+// Server Settings - Modify at will
+///////////////////////////////////////////////////////////////////////////////
+
+author = "-0908-";
+onLoadName = "-=Test Server=-";
+onLoadMission= "-=Test Server=-";
+//loadScreen = "";
+disableChannels[] = {0, 2};
+OnLoadIntro = "";
+OnLoadIntroTime = 1;
+OnLoadMissionTime = 1;
+
+class Header
+{
+    gameType = Survive; // Do NOT change this
+    minPlayers = 1;
+    maxPlayers = 20;
+};
+
+forceRotorLibSimulation = 2;
+skipLobby = 0;
+joinUnassigned = 0;
+respawn = "respawn_resistance";
+respawnDelay = 120;
+respawnDialog = 1;
+respawnOnStart = 1;
+respawnButton = 1;
+respawnTemplates[] = {""};
+//respawnWeapons[] = { "arifle_Katiba_GL_F" };
+//respawnMagazines[] = { "30Rnd_65x39_caseless_green", "30Rnd_65x39_caseless_green" };
+corpseManagerMode = 0;
+corpseLimit = 1;
+corpseRemovalMinTime = 1;
+corpseRemovalMaxTime = 3;
+minPlayerDistance = 0; // meters. Default: 0
+wreckManagerMode = 0;
+wreckLimit = 3;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 120;
+scriptedPlayer = 1;
+disabledAI = 1;
+enableItemsDropping = 0;
+briefing = 0;
+debriefing = 0;
+allowFunctionsLog = 1;
+enableDebugConsole[] = {"76561198027741420"};
+allowFunctionsRecompile = 1;
+showSquadRadar = 0;
+showUAVFeed = 0;
+reviveDelay = 6;
+reviveForceRespawnDelay = 3;
+reviveBleedOutDelay = 120;
+
+showHUD[] =
+{
+    true,   // Scripted HUD (same as showHUD command)
+    true,   // Vehicle + soldier info
+    true,   // Vehicle radar
+    true,   // Vehicle compass
+    true,   // Tank direction indicator
+    false,   // Commanding menu
+    false,  // Group Bar
+    true,   // HUD Weapon Cursors
+    true   // Vehicle Panel (Required for GPS)
+};
+
+class CfgFunctions
+{
+	//INIDB2 CUSTOM FUNCTIONS
+	class Inidb2Functions
+	{
+		tag = "INIDB2";
+		file = "Inidb2_Functions";
+		class Inidb2Request
+		{
+			//INIDB2
+			class Inidb2RequestLoadOnStart {}; 		// [] call INIDB2_fnc_Inidb2RequestLoadOnStart;
+			class Inidb2RequestSavePlayer {};  		// [] call INIDB2_fnc_Inidb2RequestSavePlayer;
+			class Inidb2RequestSavePlayerBase {};  	// [_object] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
+			class Inidb2RequestSaveMoney {};  		// [MoneyAmount] call INIDB2_fnc_Inidb2RequestSaveMoney;
+			class Inidb2RequestResetPlayer {}; 		// [] call INIDB2_fnc_Inidb2RequestResetPlayer;
+		};
+	};
+	//BRG CUSTOM FUNCTIONS
+	class BRGFunctions
+	{
+		tag = "BRG";
+		file = "BRG_Functions";
+		class BRGCustomFunctions
+		{
+			//MY CUSTOM GUI STUFF
+			class Activate_GUI_SJUMP {};	  	// [[0.8, 0.5, 0.2, 0.15], 1.0, true, "S-JUMP", 0] call BRG_fnc_Activate_GUI_SJUMP;
+			class Activate_GUI_MONEY {};	  	// [[0.8, 0.5, 0.2, 0.15], 1.0, true, "money", 0] call BRG_fnc_Activate_GUI_MONEY;
+			class Set_Killed_Hit_HANDLER {};	// [this] call BRG_fnc_Set_Killed_Hit_HANDLER;
+			class Killed_GUI_Draw3D {};			// [] call BRG_fnc_Killed_GUI_Draw3D;
+			class Hit_GUI_Draw3D {};			// [] call BRG_fnc_Hit_GUI_Draw3D;
+			//MY CUSTOM FUNCTIONS
+			class StartCustomNameplate {};	  	// [3200] call BRG_fnc_StartCustomNameplate;
+			class MakeItLoot {};	  			// [] call BRG_fnc_MakeItLoot;
+			class COD_Parachute {};	  			// [] call BRG_fnc_COD_Parachute;
+		};
+	};
+};
+
+class RscTitles
+{
+
+};
+
+class CfgCommunicationMenu
+{
+
+};
+
+#include "CfgRemoteExec.hpp"
+
+class CfgSounds
+{
+	sounds[] = {};
+	//"LOOTBOXOPENED" SOUND
+	class LOOTBOXOPENED
+	{
+		name = "LOOTBOXOPENED_SOUND";
+		sound[] = {"Sounds\LOOTBOXOPENED.ogg", 0.85, 0.85, 20};
+		titles[] = {0,""};
+	};
+	//"LOOTBOXITEM" SOUND
+	class LOOTBOXITEM
+	{
+		name = "LOOTBOXITEM_SOUND";
+		sound[] = {"Sounds\RAREITEMDROP.ogg", 0.85, 0.85, 20};
+		titles[] = {0,""};
+	};
+	//"PARACHUTESFX" SOUND
+	class PARACHUTESFX
+	{
+		name = "PARACHUTE_SFX";
+		sound[] = {"Sounds\PARACHUTE.ogg", 1, 0.85, 20};
+		titles[] = {0,""};
+	};
+	//"PARACHUTEOFF" SOUND
+	class PARACHUTEOFF
+	{
+		name = "PARACHUTE_OFF";
+		sound[] = {"Sounds\PARACHUTEOFF.ogg", 1, 0.85, 20};
+		titles[] = {0,""};
+	};
+	//"HITSFX" SOUND
+	class HITSFX
+	{
+		name = "HIT_SFX";
+		sound[] = {"Sounds\HIT.ogg", 0.85, 1, 25};
+		titles[] = {0,""};
+	};
+	//"SJUMP" SOUND
+	class SJUMP
+	{
+		name = "SJUMP_SFX";
+		sound[] = {"Sounds\SJUMP.ogg", 0.85, 1, 25};
+		titles[] = {0,""};
+	};
+	//"BUILD" SOUND
+	class BUILDSFX
+	{
+		name = "BUILD_SFX";
+		sound[] = {"Sounds\BUILD.ogg", 1, 1, 25};
+		titles[] = {0,""};
+	};
+};
+
+class CfgNotifications
+{
+
+};

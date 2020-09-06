@@ -1,0 +1,2 @@
+//PLAYER DIED. SEND RESET PACKET TO DATABASE
+	[] call INIDB2_fnc_Inidb2RequestResetPlayer;
