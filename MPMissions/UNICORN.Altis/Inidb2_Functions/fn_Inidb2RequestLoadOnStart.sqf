@@ -27,8 +27,8 @@
 		//player setUnitLoadout [[],[],[],["U_IG_Guerilla1_1",[[""],[],[],[],[]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		player setUnitLoadout [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_starting_Foods_Items1,1,1],[_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		player switchCamera "EXTERNAL";
+		CurrentMoneyAmount = 5000;
 		[[0.65, 1, 0.2, 0.15], 1.0, true, 5000] call BRG_fnc_Activate_GUI_MONEY;
-		CurrentMoneyAmount = 0;
 		titleFadeOut 5;
 		player setVariable ["GeigerON", true];
 		playSound ["Beep_Target", false];
