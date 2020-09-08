@@ -15,7 +15,9 @@ waitUntil {time > 0};
 		_datanamearrayBase = format ["(%1)_(%2)_(PlayerBase)_(UNICORN-ALTIS)", _dataplayrname, _dataplayruid];
 		_databasename = _datanamearray;
 		_databasenameBase = _datanamearrayBase;
-		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],[],[],[],[]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
+		_Ravage_starting_Foods_Items1 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
+		_Ravage_starting_Foods_Items2 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
+		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_Ravage_starting_Foods_Items1,1,1],[_Ravage_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		_dataplayrpos = getMarkerPos "respawn_resistance";
 		_dataplayrdir = round(random 360);
 		_inidbiUN = ["new", _databasename] call OO_INIDBI;
@@ -28,65 +30,80 @@ waitUntil {time > 0};
 			["write", ["INFO", "Position", _dataplayrpos]] call _inidbiUN;
 			["write", ["INFO", "Direction", _dataplayrdir]] call _inidbiUN;
 			["write", ["INFO", "Health", 0]] call _inidbiUN;
-			["write", ["GEAR", "Loadout", _dataNewUnitLoadout]] call _inidbiUN;
 			["write", ["INFO", "Money", 5000]] call _inidbiUN;
-			["write", ["INFO", "Name", _packet select 0]] call _inidbiUN;
-			["write", ["INFO", "UID", _packet select 1]] call _inidbiUN;
+			["write", ["GEAR", "Loadout", _dataNewUnitLoadout]] call _inidbiUN;
+			["write", ["RAVAGE", "Thirst", 100]] call _inidbiUN;
+			["write", ["RAVAGE", "Hunger", 100]] call _inidbiUN;
+			["write", ["RAVAGE", "Radiation", 0]] call _inidbiUN;
 			//BASE BUILDING DB
 			["write", ["INFO", "Name", _dataplayrname]] call _inidbiUNBase;
 			["write", ["INFO", "UID", _dataplayruid]] call _inidbiUNBase;
 			["write", ["BASE", "ObjectCount", 0]] call _inidbiUNBase;
-
+			["write", ["0", "ObjectName", "name"]] call _inidbiUNBase;
+			["write", ["0", "Position", [0,0,0]]] call _inidbiUNBase;
+			["write", ["0", "Direction", 0]] call _inidbiUNBase;
 			format ["NewRaider: Welcome (%1)!", _dataplayrname] remoteExec ["hint", 0];
 		};
 		if (_databasefind) then 
 		{
-			//SPAWN PLAYER BASE WHEN HE LOG IN THEN THE PLAYER AFTER
-			_readObjectCount = ["read", ["BASE", "ObjectCount", ""]] call _inidbiUNBase;
-			_readObjPosDel = ["read", ["1", "Position", []]] call _inidbiUNBase;
-			private _deleteBaseObj = nearestObjects [_readObjPosDel, ["ALL"], 25];
-			if (count _deleteBaseObj < _readObjectCount) then 
+			//SPAWN PLAYER BASE WHEN HE LOG IN IF NOT ALREADY SPAWNED
+			private _readObjectCount = ["read", ["BASE", "ObjectCount", ""]] call _inidbiUNBase;
+			//CHECK IF PLAYER HAS A BASE FIRST
+			if (_readObjectCount >= 1) then 
 			{
-				diag_log format ["-=========================TIMSBR diag_log BASE_SPAWNNED: (%1)-(%2)-(%3) =========================-", _dataplayruid, _dataplayrname, _readObjectCount];
-				//SPAWN PLAYER BASE
-				_indexNumber = 1;
-				for "_x" from 1 to _readObjectCount do 
+				//TODO:NEED TO PUT INDEX AT "0" HERE MAIN BUILDING ACCESS BUILT AT "0"
+				private _readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
+				private _AllBaseObj = nearestObjects [_readObjPos, ["ALL"], 25];
+				//SPAWN BASE IF CUREENT OBJECT NUMBER DOESNT MATCHES THE NUMBER IN DATABASE COUNT
+				if (count _AllBaseObj < _readObjectCount) then 
 				{
-					_readObjName = ["read", [_indexNumber, "ObjectName", ""]] call _inidbiUNBase;
-					_readObjPos = ["read", [_indexNumber, "Position", []]] call _inidbiUNBase;
-					_readObjDir = ["read", [_indexNumber, "Direction", ""]] call _inidbiUNBase;
-					//CREATE PLAYER BASE
-					private _objectPlayerBase = _readObjName createVehicle [0,0,0];
-					_objectPlayerBase setPosWorld _readObjPos;
-					_objectPlayerBase setDir _readObjDir;
-					_indexNumber = _indexNumber +1;
+					//SPAWN PLAYER BASE
+					_indexNumber = 1;
+					for "_x" from 1 to _readObjectCount do 
+					{
+						_readObjName = ["read", [_indexNumber, "ObjectName", ""]] call _inidbiUNBase;
+						_readObjPos = ["read", [_indexNumber, "Position", []]] call _inidbiUNBase;
+						_readObjDir = ["read", [_indexNumber, "Direction", ""]] call _inidbiUNBase;
+						//CREATE PLAYER BASE
+						private _objectPlayerBase = _readObjName createVehicle [0,0,0];
+						_objectPlayerBase setPosWorld _readObjPos;
+						_objectPlayerBase setDir _readObjDir;
+						_indexNumber = _indexNumber +1;
+					};
+					diag_log format ["-=========================TIMSBR diag_log SPAWNNING_BASE: (%1)-(%2)- BASE SIZE:(%3) =========================-", _dataplayruid, _dataplayrname, _readObjectCount];
 				};
 			};
-			//HOW TO DELETE BASEBUILDING
-			/*private _deleteBaseObj = nearestObjects [_readObjPosDel, ["ALL"], 50];
-			diag_log format ["-=TIMSBR diag_log: %1, %2", count _deleteBaseObj, _deleteBaseObj];
-			//if ((str _nObject select [1,1] == "R") && (count _deleteBaseObj == 1))  then {hint"123";};
-			if (count _deleteBaseObj > 1) then 
-			{
-				//DELETE PLAYER BASE
-				_readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
-				{
-					deleteVehicle _x;
-				}forEach _deleteBaseObj;
-			};*/
+					//HOW TO DELETE BASEBUILDING
+					/*private _deleteBaseObj = nearestObjects [_readObjPosDel, ["ALL"], 50];
+					diag_log format ["-=TIMSBR diag_log: %1, %2", count _deleteBaseObj, _deleteBaseObj];
+					//if ((str _nObject select [1,1] == "R") && (count _deleteBaseObj == 1))  then {hint"123";};
+					if (count _deleteBaseObj > 1) then 
+					{
+						//DELETE PLAYER BASE
+						_readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
+						{
+							deleteVehicle _x;
+						}forEach _deleteBaseObj;
+					};*/
 			//SEND PLAYER LAST SAVE INFO
 			_readpos = ["read", ["INFO", "Position", []]] call _inidbiUN;   
 			_readdir = ["read", ["INFO", "Direction", ""]] call _inidbiUN;
 			_readdamage = ["read", ["INFO", "Health", ""]] call _inidbiUN;
 			_readloadout = ["read", ["GEAR", "Loadout", []]] call _inidbiUN;
 			_readCurrentmoney = ["read", ["INFO", "Money", ""]] call _inidbiUN;
+			_readThirst = ["read", ["RAVAGE", "Thirst", ""]] call _inidbiUN;
+			_readHunger = ["read", ["RAVAGE", "Hunger", ""]] call _inidbiUN;
+			_readRadiation = ["read", ["RAVAGE", "Radiation", ""]] call _inidbiUN;
 			un_database_load = 
 			[
 				_readpos,
 				_readdir,
 				_readdamage,
 				_readloadout,
-				_readCurrentmoney
+				_readCurrentmoney,
+				_readThirst,
+				_readHunger,
+				_readRadiation
 			];
 			_dataplayrowner publicVariableClient "un_database_load";
 		};
@@ -107,6 +124,9 @@ waitUntil {time > 0};
         ["write", ["INFO", "Direction", _packet select 3]] call _inidbiUN;
         ["write", ["INFO", "Health", _packet select 4]] call _inidbiUN;
         ["write", ["GEAR", "Loadout", _packet select 5]] call _inidbiUN;
+		["write", ["RAVAGE", "Thirst", _packet select 6]] call _inidbiUN;
+		["write", ["RAVAGE", "Hunger", _packet select 7]] call _inidbiUN;
+		["write", ["RAVAGE", "Radiation", _packet select 8]] call _inidbiUN;
     };
 //============================================//
 //HANDLE KILLED PLAYER, RESET TO DEFAULT LOADOUT
@@ -117,13 +137,18 @@ waitUntil {time > 0};
         _datanamearray = format ["(%1)_(%2)_(PlayerInfo)_(UNICORN-ALTIS)", _packet select 0, _packet select 1];
         _databasename = _datanamearray;
         _inidbiUN = ["new", _databasename] call OO_INIDBI;
-		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],[],[],[],[]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
+		_Ravage_starting_Foods_Items1 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
+		_Ravage_starting_Foods_Items2 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
+		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_Ravage_starting_Foods_Items1,1,1],[_Ravage_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
         ["write", ["INFO", "Name", _packet select 0]] call _inidbiUN;
         ["write", ["INFO", "UID", _packet select 1]] call _inidbiUN;
         ["write", ["INFO", "Position", _packet select 2]] call _inidbiUN;
         ["write", ["INFO", "Direction", _packet select 3]] call _inidbiUN;
-        ["write", ["INFO", "Health", _packet select 4]] call _inidbiUN;
-        ["write", ["GEAR", "Loadout", _dataNewUnitLoadout]] call _inidbiUN;
+        ["write", ["INFO", "Health", 0]] call _inidbiUN;
+		["write", ["RAVAGE", "Thirst", 100]] call _inidbiUN;
+		["write", ["RAVAGE", "Hunger", 100]] call _inidbiUN;
+		["write", ["RAVAGE", "Radiation", 0]] call _inidbiUN;
+		["write", ["GEAR", "Loadout", _dataNewUnitLoadout]] call _inidbiUN;
     };
 //============================================//
 //HANDLE PLAYER MONEY ADDED AND REMOVED

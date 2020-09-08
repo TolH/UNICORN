@@ -1,5 +1,3 @@
-//CREATE THE MAIN TTB_MainMenu DIALOG
-	createDialog "TBB_MainMenu";
 //FIND SET CURRENT DISPLAY
 	_ctrl = (findDisplay 5555) displayCtrl 2;
 	lbClear _ctrl;

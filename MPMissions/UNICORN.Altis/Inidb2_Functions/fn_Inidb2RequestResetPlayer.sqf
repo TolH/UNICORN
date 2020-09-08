@@ -6,14 +6,12 @@
 	_dataplayruid = getPlayerUID player;
 	_dataplayrpos = getMarkerPos "respawn_resistance";
 	_dataplayrdir = round(random 360);
-	_dataplayrdamage = 0;
 	un_database_ResetData = 
 	[
 		_dataplayrname,
 		_dataplayruid,
 		_dataplayrpos,
-		_dataplayrdir,
-		_dataplayrdamage
+		_dataplayrdir
 	];
 	publicVariableServer "un_database_ResetData";
 ///============================================////============================================//

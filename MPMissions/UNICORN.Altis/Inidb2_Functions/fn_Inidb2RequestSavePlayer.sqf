@@ -9,6 +9,9 @@
 	_dataplayrdir = direction player;
 	_dataplayrdamage = damage player;
 	_dataplayrloadout = getUnitLoadout player;
+	_dataplayrThirst = player getVariable ["thirst", 100];
+	_dataplayrHunger = player getVariable ["hunger", 100];
+	_dataplayrRadiation = player getVariable ["radiation", 100];
 	un_database_save = 
 	[
 		_dataplayrname,
@@ -16,8 +19,11 @@
 		_dataplayrpos,
 		_dataplayrdir,
 		_dataplayrdamage,
-		_dataplayrloadout
+		_dataplayrloadout,
+		_dataplayrThirst,
+		_dataplayrHunger,
+		_dataplayrRadiation
 	];
 	publicVariableServer "un_database_save";
-	hint "Character Saved!";
+	hint "Character Stats Saved!";
 ///============================================//

@@ -1,7 +1,7 @@
 ///============================================//
-///REQUEST TO THE SERVER FOR SAVING PLAYER PROGRESS DATA
+///REQUEST TO THE SERVER FOR SAVING PLAYER BASE BUILDING DATA
 //TO USE: [_object] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
-//TO USE: player addAction ["<t color='#38BAFF'>Save Game</t>", {[] call INIDB2_fnc_Inidb2RequestSavePlayerBase;}];
+//TO USE: player addAction ["<t color='#38BAFF'>Save Base</t>", {[_object] call INIDB2_fnc_Inidb2RequestSavePlayerBase;}];
 ///============================================//
 private ["_dataObject"];
 _dataObject = _this select 0;
