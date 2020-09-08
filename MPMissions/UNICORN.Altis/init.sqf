@@ -40,6 +40,10 @@ MAIN_KeyDown_handler = findDisplay 46 displayAddEventHandler ["KeyDown", {
     if ((_keyCode == 205) && (PLAYERISBUILDING == 1)) exitWith {
 		PLAYEROBJECTMOVE = 4;
     };
+	//CANCEL CURRENT OBJECT
+    if ((_keyCode == 1) && (PLAYERISBUILDING == 1)) exitWith {
+		PLAYEROBJECTCANCEL = 1;
+    };
 }];
 /*
 findDisplay 46 displayAddEventHandler ["KeyDown", {

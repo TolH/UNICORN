@@ -56,14 +56,28 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 				_CurrentRotatedirVector = _CurrentRotatedirVector +10;
 				PLAYEROBJECTMOVE = 0;
 			};
+			//CANCEL OBJECT
+			if (PLAYEROBJECTCANCEL == 1) then 
+			{
+				deleteVehicle _buildObject;
+				PLAYERISBUILDING = 0;
+			};
 			uiSleep 0.20;
 		};
 		//WAIT UNTIL PLAYER PLACED THE OBJECT BY USING "SPACE" KEY
 		waitUntil { uiSleep 0.25; PLAYERISBUILDING == 0; };
-		[-_objectPriceToString] call INIDB2_fnc_Inidb2RequestSaveMoney;
-		detach _buildObject;
-		//SAVE OBJECTS TO DATABASE
-		[_buildObject] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
+		//IF PLAYER CANCELLED THE OBJECT
+		if (PLAYEROBJECTCANCEL == 1) then 
+		{
+			hint "Cancelled current object";
+			PLAYEROBJECTCANCEL = 0;
+		} else
+		{
+			[-_objectPriceToString] call INIDB2_fnc_Inidb2RequestSaveMoney;
+			detach _buildObject;
+			//SAVE OBJECTS TO DATABASE
+			[_buildObject] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
+		};
 	} else
 	{
 		hint "Not enough $$$ \nSelect something else.";
