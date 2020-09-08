@@ -4,7 +4,7 @@ waitUntil {time > 1};
 //CHECK IF INIDB DATABASE ALREADY EXIST TO LOAD SAVED DATA IF ANY
 	[] call INIDB2_fnc_Inidb2RequestLoadOnStart;
 //VARS FOR DRAW3D HANDLER ("Killed","Hit") AND MORE.
-	CurrentMoneyAmount = 0;
+	//CurrentMoneyAmount = 0;
 	NewMoneyAmount = 0;
 	NewHitAmount = 0;
 	PARACHUTE_IN_USE = 0;
