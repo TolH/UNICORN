@@ -1,5 +1,5 @@
 //============================================//
-titleFadeOut 5;
+titleText ["", "BLACK", 0];//titleFadeOut 3;
 waitUntil {time > 1};
 //CHECK IF INIDB DATABASE ALREADY EXIST TO LOAD SAVED DATA IF ANY
 	[] call INIDB2_fnc_Inidb2RequestLoadOnStart;

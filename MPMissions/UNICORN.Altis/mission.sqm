@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=64;
+		nextID=85;
 	};
 	class Camera
 	{
@@ -80,7 +80,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=28;
+		items=49;
 		class Item0
 		{
 			dataType="Marker";
@@ -3314,6 +3314,235 @@ class Mission
 				};
 				nAttributes=4;
 			};
+		};
+		class Item28
+		{
+			dataType="Marker";
+			position[]={17579.672,-25.636353,13062.631};
+			name="respawn_resistance_1";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=64;
+			atlOffset=-42.041191;
+		};
+		class Item29
+		{
+			dataType="Marker";
+			position[]={18335.025,0,15096.773};
+			name="respawn_resistance_2";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=65;
+			atlOffset=-18.940493;
+		};
+		class Item30
+		{
+			dataType="Marker";
+			position[]={21238.219,1.9529476,16981.77};
+			name="respawn_resistance_3";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=66;
+			atlOffset=-25.042318;
+		};
+		class Item31
+		{
+			dataType="Marker";
+			position[]={23583.137,-11.411346,20057.332};
+			name="respawn_resistance_4";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=67;
+			atlOffset=-25.042318;
+		};
+		class Item32
+		{
+			dataType="Marker";
+			position[]={27076.096,-2.6985264,23303.764};
+			name="respawn_resistance_5";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=68;
+			atlOffset=-24.875961;
+		};
+		class Item33
+		{
+			dataType="Marker";
+			position[]={25683.797,-3.8136883,21424.252};
+			name="respawn_resistance_6";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=69;
+			atlOffset=-25.042318;
+		};
+		class Item34
+		{
+			dataType="Marker";
+			position[]={19430.676,7.1105251,13393.606};
+			name="respawn_resistance_7";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=70;
+			atlOffset=-25.042318;
+		};
+		class Item35
+		{
+			dataType="Marker";
+			position[]={20822.65,3.08008,7248.1221};
+			name="respawn_resistance_8";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=71;
+			atlOffset=-25.042318;
+		};
+		class Item36
+		{
+			dataType="Marker";
+			position[]={16828.887,10.066095,11874.977};
+			name="respawn_resistance_9";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=72;
+		};
+		class Item37
+		{
+			dataType="Marker";
+			position[]={14737.195,24.057129,20776.43};
+			name="respawn_resistance_10";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=73;
+			atlOffset=-25.418186;
+		};
+		class Item38
+		{
+			dataType="Marker";
+			position[]={9098.5098,-4.6171436,12007.35};
+			name="respawn_resistance_11";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=74;
+			atlOffset=-25.042318;
+		};
+		class Item39
+		{
+			dataType="Marker";
+			position[]={10964.897,2.6188602,13366.791};
+			name="respawn_resistance_12";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=75;
+			atlOffset=-25.042318;
+		};
+		class Item40
+		{
+			dataType="Marker";
+			position[]={3590.5947,-19.662209,13217.586};
+			name="respawn_resistance_13";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=76;
+			atlOffset=-25.042318;
+		};
+		class Item41
+		{
+			dataType="Marker";
+			position[]={5249.8281,-4.3942318,14453.199};
+			name="respawn_resistance_14";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=77;
+			atlOffset=-25.042318;
+		};
+		class Item42
+		{
+			dataType="Marker";
+			position[]={5140.5864,46.483398,16137.422};
+			name="respawn_resistance_15";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=78;
+			atlOffset=-28.515762;
+		};
+		class Item43
+		{
+			dataType="Marker";
+			position[]={12326.823,-2.7979412,15761.861};
+			name="respawn_resistance_16";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=79;
+			atlOffset=-25.042318;
+		};
+		class Item44
+		{
+			dataType="Marker";
+			position[]={13997.541,0.94649506,18729.012};
+			name="respawn_resistance_17";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=80;
+			atlOffset=-25.042318;
+		};
+		class Item45
+		{
+			dataType="Marker";
+			position[]={17951.242,-19.732573,18095.555};
+			name="respawn_resistance_18";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=81;
+			atlOffset=-25.042318;
+		};
+		class Item46
+		{
+			dataType="Marker";
+			position[]={8385.7002,155.04907,18241.691};
+			name="respawn_resistance_19";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=82;
+			atlOffset=-25.184326;
+		};
+		class Item47
+		{
+			dataType="Marker";
+			position[]={10249.595,102.34277,19099.41};
+			name="respawn_resistance_20";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=83;
+			atlOffset=-25.395927;
+		};
+		class Item48
+		{
+			dataType="Marker";
+			position[]={9188.124,14.403187,21666.895};
+			name="respawn_resistance_21";
+			type="respawn_unknown";
+			colorName="ColorGUER";
+			angle=242.73694;
+			id=84;
 		};
 	};
 };

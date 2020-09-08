@@ -4,14 +4,10 @@
 ///============================================//
 	_dataplayrname = profileName;
 	_dataplayruid = getPlayerUID player;
-	_dataplayrpos = getMarkerPos "respawn_resistance";
-	_dataplayrdir = round(random 360);
 	un_database_ResetData = 
 	[
 		_dataplayrname,
-		_dataplayruid,
-		_dataplayrpos,
-		_dataplayrdir
+		_dataplayruid
 	];
 	publicVariableServer "un_database_ResetData";
 ///============================================////============================================//
