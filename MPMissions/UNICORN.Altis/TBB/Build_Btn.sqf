@@ -9,23 +9,22 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 	_objectPrice = _objectSelected select [0, 4];
 	_objectPriceToString = _objectPrice call BIS_fnc_parseNumber;
 	//CHECK IF PLAYER HAS ENOUGH MONEY
-	private _playerHasMoney = CurrentMoneyAmount - _objectPriceToString;
+	_playerHasMoney = CurrentMoneyAmount - _objectPriceToString;
 	//CREATE PLAYER SELECTED OBJECT
 	if (_playerHasMoney >= 0) then 
 	{
 		//PUT PLAYER IN BUILD MODE
 		PLAYERISBUILDING = 1;
-		private _ObjAtPlayerPos = getPosATL player;
-		private _buildObject = createVehicle [_newObjectStringCut, [_ObjAtPlayerPos select 0, (_ObjAtPlayerPos select 1)+3, (_ObjAtPlayerPos select 2)+1], [], 0, "CAN_COLLIDE"];
+		_ObjAtPlayerPos = getPosATL player;
+		_buildObject = createVehicle [_newObjectStringCut, [_ObjAtPlayerPos select 0, (_ObjAtPlayerPos select 1)+3, (_ObjAtPlayerPos select 2)+1], [], 0, "CAN_COLLIDE"];
 		_buildObject attachto [player, [0,3,1]];
-		//CLOSE DIALOG
 		closeDialog 5555;
 		hint "PRESS (SPACE) TO PLACE THAT OBJECT.";
 		//LOOP HERE TO BE ABLE TO TRACK KEYPRESS AND MOVING OBJECT WITH ATTACH POS
 		//_ObjAtPlayerPos setVectorDirAndUp [[0.5, 0.5, 0], [-0.5, 0.5, 0]];
-		private _defaultAttachPosUPandDOWN = 1;
 		//private _CurrentRotatedirVector = vectorDir _buildObject;
-		private _CurrentRotatedirVector = getDir _buildObject;
+		_defaultAttachPosUPandDOWN = 1;
+		_CurrentRotatedirVector = getDir _buildObject;
 		while {PLAYERISBUILDING == 1} do 
 		{
 			//UP
@@ -65,18 +64,20 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 			uiSleep 0.20;
 		};
 		//WAIT UNTIL PLAYER PLACED THE OBJECT BY USING "SPACE" KEY
-		waitUntil { uiSleep 0.25; PLAYERISBUILDING == 0; };
+		waitUntil { uiSleep 0.20; PLAYERISBUILDING == 0; };
 		//IF PLAYER CANCELLED THE OBJECT
 		if (PLAYEROBJECTCANCEL == 1) then 
 		{
 			hint "Cancelled current object";
 			PLAYEROBJECTCANCEL = 0;
+			TBBdialogMain = 0;
 		} else
 		{
 			[-_objectPriceToString] call INIDB2_fnc_Inidb2RequestSaveMoney;
 			detach _buildObject;
 			//SAVE OBJECTS TO DATABASE
 			[_buildObject] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
+			TBBdialogMain = 0;
 		};
 	} else
 	{

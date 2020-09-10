@@ -19,6 +19,10 @@ MAIN_KeyDown_handler = findDisplay 46 displayAddEventHandler ["KeyDown", {
     if (_keyCode == 6) exitWith {
         [[0.6, 1, 0.2, 0.15], 1.0, true, "5", 1] call BRG_fnc_Activate_GUI_SJUMP;
     };
+	//TBB BASE BUILDING DIALOG  CTRL+B
+    if ((_keyCode == 48 && _isCtrl) && (PLAYERISBUILDING == 0)) exitWith {
+        execVM "TBB\TBB_MainMenuDialog.sqf";
+    };
 	//BuildCurrent Object
     if ((_keyCode == 57) && (PLAYERISBUILDING == 1)) exitWith {
         playSound "BUILDSFX";

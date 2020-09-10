@@ -498,7 +498,7 @@ class RscListBox
   w = 0.4;
   h = 0.4;
   font = "RobotoCondensed";
-  sizeEx = 0.035;
+  sizeEx = 0.034;
   rowHeight = 0;
   colorText[] = {1,1,1,1};
   colorDisabled[] = {1,1,1,0.25};

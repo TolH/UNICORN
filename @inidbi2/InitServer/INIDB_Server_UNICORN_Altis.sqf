@@ -46,7 +46,7 @@ waitUntil {time > 0};
 			["write", ["INFO", "Name", _dataplayrname]] call _inidbiUNBase;
 			["write", ["INFO", "UID", _dataplayruid]] call _inidbiUNBase;
 			["write", ["BASE", "ObjectCount", 0]] call _inidbiUNBase;
-			["write", ["0", "ObjectName", "name"]] call _inidbiUNBase;
+			["write", ["0", "ObjectName", "template"]] call _inidbiUNBase;
 			["write", ["0", "Position", [0,0,0]]] call _inidbiUNBase;
 			["write", ["0", "Direction", 0]] call _inidbiUNBase;
 			format ["NewRaider: Welcome (%1)!", _dataplayrname] remoteExec ["hint", 0];
@@ -54,17 +54,15 @@ waitUntil {time > 0};
 		if (_databasefind) then 
 		{
 			//SPAWN PLAYER BASE WHEN HE LOG IN IF NOT ALREADY SPAWNED
-			private _readObjectCount = ["read", ["BASE", "ObjectCount", ""]] call _inidbiUNBase;
+			_readObjectCount = ["read", ["BASE", "ObjectCount", ""]] call _inidbiUNBase;
 			//CHECK IF PLAYER HAS A BASE FIRST
 			if (_readObjectCount >= 1) then 
 			{
-				//TODO:NEED TO PUT INDEX AT "0" HERE MAIN BUILDING ACCESS BUILT AT "0"
-				private _readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
-				private _AllBaseObj = nearestObjects [_readObjPos, ["ALL"], 25];
+				_readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
+				_AllBaseObj = nearestObjects [[_readObjPos select 0, _readObjPos select 1, 0], ["ALL"], 25];//RANGE HERE TO BE MODIFIED DEPENDING ON PLAYER LEVEL
 				//SPAWN BASE IF CUREENT OBJECT NUMBER DOESNT MATCHES THE NUMBER IN DATABASE COUNT
 				if (count _AllBaseObj < _readObjectCount) then 
 				{
-					//SPAWN PLAYER BASE
 					_indexNumber = 1;
 					for "_x" from 1 to _readObjectCount do 
 					{
@@ -77,9 +75,7 @@ waitUntil {time > 0};
 						_objectPlayerBase setDir _readObjDir;
 						_indexNumber = _indexNumber +1;
 					};
-					diag_log format ["-=========================TIMSBR diag_log SPAWNNING_BASE: (%1)-(%2)- BASE SIZE:(%3) =========================-", _dataplayruid, _dataplayrname, _readObjectCount];
-				};
-			};
+					diag_log format ["-=========================TIMSBR diag_log SPAWNING_BASE_INFO: (%1)-(%2)- BASE SIZE:(%3) =========================-", _dataplayruid, _dataplayrname, _readObjectCount];
 					//HOW TO DELETE BASEBUILDING
 					/*private _deleteBaseObj = nearestObjects [_readObjPosDel, ["ALL"], 50];
 					diag_log format ["-=TIMSBR diag_log: %1, %2", count _deleteBaseObj, _deleteBaseObj];
@@ -92,6 +88,8 @@ waitUntil {time > 0};
 							deleteVehicle _x;
 						}forEach _deleteBaseObj;
 					};*/
+				};
+			};
 			//SEND PLAYER LAST SAVE INFO
 			_readpos = ["read", ["INFO", "Position", []]] call _inidbiUN;   
 			_readdir = ["read", ["INFO", "Direction", ""]] call _inidbiUN;

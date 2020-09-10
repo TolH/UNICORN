@@ -23,7 +23,7 @@ class TBB_MainMenu
 			y = 0.178027 * safezoneH + safezoneY;
 			w = 0.236297 * safezoneW;
 			h = 0.559953 * safezoneH;
-			colorBackground[] = {-1,-1,-1,0.3};
+			colorBackground[] = {-1,-1,-1,0.5};
 		};
 		class TBB_buttonBuildObject: RscButton
 		{

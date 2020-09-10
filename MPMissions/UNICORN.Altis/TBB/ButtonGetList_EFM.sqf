@@ -1,17 +1,18 @@
 //FIND SET CURRENT DISPLAY
-	_ctrl = (findDisplay 5555) displayCtrl 2;
+	private _ctrl = (findDisplay 5555) displayCtrl 2;
 	lbClear _ctrl;
+	TBBdialogMain = 1;
 //CHECK DATABASE PLAYER MONEY INFO BEFORE PUTTING PRICE UP
 	[0] call INIDB2_fnc_Inidb2RequestSaveMoney;
-	_playerMoney = CurrentMoneyAmount;
+	private _playerMoney = CurrentMoneyAmount;
 //BASE BUILDING TEMP OBJECTS LISTS
-	_objectsList = [
-		["EFM_beam_wood_angular_bearer_01", 150],
-		["EFM_beam_wood_h_1_5m", 300],
-		["EFM_beam_wood_h_1_5m_railing", 111],
-		["EFM_beam_wood_h_1m", 110],
-		["EFM_beam_wood_h_1m_railing", 101],
-		["EFM_beam_wood_h_2m", 600],
+	private _objectsList = [
+		["EFM_beam_wood_angular_bearer_01", 100],
+		["EFM_beam_wood_h_1_5m", 100],
+		["EFM_beam_wood_h_1_5m_railing", 100],
+		["EFM_beam_wood_h_1m", 100],
+		["EFM_beam_wood_h_1m_railing", 100],
+		["EFM_beam_wood_h_2m", 100],
 		["EFM_beam_wood_h_2m_railing", 100],
 		["EFM_beam_wood_h_3m", 100],
 		["EFM_beam_wood_h_3m_railing", 100],
@@ -68,7 +69,6 @@
 		["EFM_mobile_barrier_A", 100],
 		["EFM_mobile_barrier_B", 100],
 		["EFM_mobile_dragons_teeth_small", 100],
-		["EFM_mobile_dragons_teeth_small_orange", 100],
 		["EFM_pole_B_01_yellow", 100],
 		["EFM_pole_B_02_black", 100],
 		["EFM_pole_B_03_black_white", 100],
@@ -84,7 +84,6 @@
 		["EFM_ground_surface_2x2m_dirt", 100],
 		["EFM_ground_surface_4x4m_dirt", 100],
 		["EFM_ground_surface_8x4m_dirt", 100],
-		["EFM_wood_wall_2m_door", 100],
 		["EFM_wood_wall_2m_half_single", 100],
 		["EFM_wood_wall_2m_half_beam_single_c_blufor", 100],
 		["EFM_wood_wall_2m_half_beam_single_c_opfor", 100],
@@ -100,22 +99,22 @@
 	];
 //ADD DATA (NAME AND PRICE) IN THE GUI
 	{
-		_objectName = (_x select 0);
-		_objectPrice = str(_x select 1);
+		private _objectName = (_x select 0);
+		private _objectPrice = str(_x select 1);
 		lbAdd [2, _objectPrice+" "+_objectName];
 		if ((_x select 1) > _playerMoney) then { lbSetColor [2, _forEachIndex, [1, 0, 0, 1]]; };
 	} forEach _objectsList;
 	lbSetCurSel [2, 0];
 //CYCLE BETWEEN PICTURE ON NEW ITEM SELECTED
-	while {dialog} do 
+	while {TBBdialogMain == 1} do 
 	{
-		_index = lbCurSel 2;
-		_objectSelected = lbText [2, _index];
+		private _index = lbCurSel 2;
+		private _objectSelected = lbText [2, _index];
 		//FIDDLE AROUND STRING FOR HAVING 2 VALUES WITHIN ONLY ONE STRING FOR _index HAck...
-		_cnt = count _objectSelected;
-		_newObjectStringCut = _objectSelected select [4, _cnt];
-		_objectPrice = _objectSelected select [0, 4];
-		_picture = getText (configfile >> "CfgVehicles" >> _newObjectStringCut >> "editorPreview");
+		private _cnt = count _objectSelected;
+		private _newObjectStringCut = _objectSelected select [4, _cnt];
+		private _objectPrice = _objectSelected select [0, 4];
+		private _picture = getText (configfile >> "CfgVehicles" >> _newObjectStringCut >> "editorPreview");
 		//SET DATA
 		ctrlSetText [4, _picture];
 		ctrlSetText [5, _objectPrice+"$"];
