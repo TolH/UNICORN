@@ -18,7 +18,7 @@
 		publicVariableServer "un_database_check";
 		private _random_FirstSpawn_Zone = 
 			[
-				"respawn_resistance","respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
+				"respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
 				"respawn_resistance_6","respawn_resistance_7","respawn_resistance_8","respawn_resistance_9","respawn_resistance_10","respawn_resistance_11",
 				"respawn_resistance_12","respawn_resistance_13","respawn_resistance_14","respawn_resistance_15","respawn_resistance_16","respawn_resistance_17",
 				"respawn_resistance_18","respawn_resistance_19","respawn_resistance_20","respawn_resistance_21"

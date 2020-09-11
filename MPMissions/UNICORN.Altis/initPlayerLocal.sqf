@@ -17,6 +17,4 @@ waitUntil {time > 1};
 	[[0.6, 1, 0.2, 0.15], 1.0, true, "5", 0] call BRG_fnc_Activate_GUI_SJUMP;
 //ACTIVATE GUI HIT VISUAL NUMBER
 	[player, 1] call BRG_fnc_Set_Killed_Hit_HANDLER;
-	//TEMP BUILD MENU BY MOUSE
-	//player addAction ["TBB_MainMenu", { execVM "TBB\TBB_MainMenuDialog.sqf"; }];
 //============================================//

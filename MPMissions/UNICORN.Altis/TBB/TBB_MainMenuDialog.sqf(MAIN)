@@ -10,15 +10,14 @@
 	private _playerMoney = CurrentMoneyAmount;
 //BASE BUILDING TEMP OBJECTS LISTS
 	private _objectsListMain = [
-		["999 ", "EFM_mobile_dragons_teeth_small_orange"]
+		["EFM_mobile_dragons_teeth_small_orange", 999]
 	];
 //ADD DATA (NAME AND PRICE) IN THE GUI
 	{
-		private _objectPrice = (_x select 0);
-		private _objectName = (_x select 1);
-		private _objectPriceParse = parseNumber _objectPrice;
+		private _objectName = (_x select 0);
+		private _objectPrice = str(_x select 1);
 		lbAdd [2, _objectPrice+" "+_objectName];
-		if (_objectPriceParse > _playerMoney) then { lbSetColor [2, _forEachIndex, [1, 0, 0, 1]]; };
+		if ((_x select 1) > _playerMoney) then { lbSetColor [2, _forEachIndex, [1, 0, 0, 1]]; };
 	} forEach _objectsListMain;
 	lbSetCurSel [2, 0];
 //CYCLE BETWEEN PICTURE ON NEW ITEM SELECTED
@@ -28,8 +27,8 @@
 		private _objectSelected = lbText [2, _index];
 		//FIDDLE AROUND STRING FOR HAVING 2 VALUES WITHIN ONLY ONE STRING FOR _index HAck...
 		private _cnt = count _objectSelected;
-		private _newObjectStringCut = _objectSelected select [5, _cnt];
-		private _objectPrice = _objectSelected select [0, 5];
+		private _newObjectStringCut = _objectSelected select [4, _cnt];
+		private _objectPrice = _objectSelected select [0, 4];
 		private _picture = getText (configfile >> "CfgVehicles" >> _newObjectStringCut >> "editorPreview");
 		//SET DATA
 		ctrlSetText [4, _picture];

@@ -5,8 +5,8 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 	_objectSelected = lbText [2, _index];
 	//DO SOME STRING MAGIC TO BE ABLE TO GET PRICE INFO AND OBJECT NAME WITHIN THE SAME STRING
 	_cnt = count _objectSelected;
-	_newObjectStringCut = _objectSelected select [4, _cnt];
-	_objectPrice = _objectSelected select [0, 4];
+	_newObjectStringCut = _objectSelected select [5, _cnt];
+	_objectPrice = _objectSelected select [0, 5];
 	_objectPriceToString = _objectPrice call BIS_fnc_parseNumber;
 	//CHECK IF PLAYER HAS ENOUGH MONEY
 	_playerHasMoney = CurrentMoneyAmount - _objectPriceToString;

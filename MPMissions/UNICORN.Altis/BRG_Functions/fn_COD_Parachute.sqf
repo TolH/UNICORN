@@ -5,7 +5,7 @@ PARACHUTE_IN_USE = 0;
 //SPAWN PARACHUTE TO PLAYER
 if (vehicle player == player) then 
 {
-	if (/*!(isTouchingGround player) && ((position player select 2) >= 4) && */(vehicle player IsEqualto player) && (alive player)) then
+	if ((vehicle player IsEqualto player) && (alive player)) then
 	{
 		player switchCamera "EXTERNAL";
 		addCamShake [6, 3, 15];

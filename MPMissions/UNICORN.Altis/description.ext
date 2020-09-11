@@ -82,6 +82,7 @@ class CfgFunctions
 			class Inidb2RequestSavePlayerBase {};  	// [_object] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
 			class Inidb2RequestSaveMoney {};  		// [MoneyAmount] call INIDB2_fnc_Inidb2RequestSaveMoney;
 			class Inidb2RequestResetPlayer {}; 		// [] call INIDB2_fnc_Inidb2RequestResetPlayer;
+			class Inidb2RequestSubmitBox {};  		// [_SubmitTxt] call INIDB2_fnc_Inidb2RequestSubmitBox;
 		};
 	};
 	//BRG CUSTOM FUNCTIONS
@@ -97,6 +98,7 @@ class CfgFunctions
 			class Set_Killed_Hit_HANDLER {};	// [this] call BRG_fnc_Set_Killed_Hit_HANDLER;
 			class Killed_GUI_Draw3D {};			// [] call BRG_fnc_Killed_GUI_Draw3D;
 			class Hit_GUI_Draw3D {};			// [] call BRG_fnc_Hit_GUI_Draw3D;
+			class GUI_SubmitBox {};				// ["text here for title"] call BRG_fnc_GUI_SubmitBox;
 			//MY CUSTOM FUNCTIONS
 			class StartCustomNameplate {};	  	// [3200] call BRG_fnc_StartCustomNameplate;
 			class MakeItLoot {};	  			// [] call BRG_fnc_MakeItLoot;

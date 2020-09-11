@@ -20,7 +20,7 @@ waitUntil {time > 0};
 		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_Ravage_starting_Foods_Items1,1,1],[_Ravage_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		_random_FirstSpawn_Zone = 
 			[
-				"respawn_resistance","respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
+				"respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
 				"respawn_resistance_6","respawn_resistance_7","respawn_resistance_8","respawn_resistance_9","respawn_resistance_10","respawn_resistance_11",
 				"respawn_resistance_12","respawn_resistance_13","respawn_resistance_14","respawn_resistance_15","respawn_resistance_16","respawn_resistance_17",
 				"respawn_resistance_18","respawn_resistance_19","respawn_resistance_20","respawn_resistance_21"
@@ -147,7 +147,7 @@ waitUntil {time > 0};
 		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_Ravage_starting_Foods_Items1,1,1],[_Ravage_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
 		_random_Spawn_Zone = 
 			[
-				"respawn_resistance","respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
+				"respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
 				"respawn_resistance_6","respawn_resistance_7","respawn_resistance_8","respawn_resistance_9","respawn_resistance_10","respawn_resistance_11",
 				"respawn_resistance_12","respawn_resistance_13","respawn_resistance_14","respawn_resistance_15","respawn_resistance_16","respawn_resistance_17",
 				"respawn_resistance_18","respawn_resistance_19","respawn_resistance_20","respawn_resistance_21"
@@ -210,4 +210,24 @@ waitUntil {time > 0};
 		//ADD NEW OBJECTS COUNT TO KEEP TRACK
 		["write", ["BASE", "ObjectCount", _ReadObjectCount +1]] call _inidbiUN;
     };
+//============================================//
+//HANDLE PLAYER SUBMIT BOX MSG RECEIVED
+    "un_database_SubmitBox" addPublicVariableEventHandler 
+	{
+		private ["_packet"];
+        _packet = _this select 1;
+		_dataplayrowner = _packet select 0;
+		_dataplayerMSG = _packet select 3;
+        _datanamearray = format ["(%1)_(%2)_(PlayerInfo)_(UNICORN-ALTIS)", _packet select 1, _packet select 2];
+        _databasename = _datanamearray;
+        _inidbiUN = ["new", _databasename] call OO_INIDBI;
+		_SendServerResponse = ["read", ["INFO", "Name", _packet select 1]] call _inidbiUN;
+		diag_log format ["-===========TIMSBR SUBMITBOX: (%1)_(%2) ***%3***",_packet select 1, _packet select 2, _dataplayerMSG];
+		//SEND MONEY INFO BACK TO PLAYER
+		un_database_loadSubmitBox = 
+		[
+			_SendServerResponse
+		];
+		_dataplayrowner publicVariableClient "un_database_loadSubmitBox";
+	};
 //============================================//
