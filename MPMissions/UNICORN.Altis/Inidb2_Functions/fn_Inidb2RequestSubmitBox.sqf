@@ -24,7 +24,6 @@ if (_playerTxt == "") exitWith { hint format ["ERROR: MISSING ""TEXT"" "]; };
 		[
 			_readServerResponse
 		];
-		//
 		hint format["SERVER MSG:\n%1",_readServerResponse];
     };
 ///============================================//

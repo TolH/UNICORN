@@ -12,10 +12,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={14499.099,58.017559,6147.7407};
-		dir[]={-0.68144494,-0.5208323,0.51416594};
-		up[]={-0.41576141,0.85365903,0.31370157};
-		aside[]={0.60230833,1.4901161e-008,0.79826355};
+		pos[]={14484.953,64.989471,6134.2827};
+		dir[]={0.49024853,-0.47275835,0.73223168};
+		up[]={0.26301762,0.88118577,0.39284205};
+		aside[]={0.83095586,1.3911631e-008,-0.55635095};
 	};
 };
 binarizationWanted=0;
@@ -2131,7 +2131,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -3229,11 +3229,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={17403.967,204.44279,23330.098};
+				position[]={17403.967,204.44255,23330.098};
 			};
 			id=61;
 			type="Ravage_debug";
-			atlOffset=350.06024;
+			atlOffset=350.06;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -3270,7 +3270,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -3289,7 +3289,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};

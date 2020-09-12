@@ -21,5 +21,4 @@ _dataObjectDir = direction _dataObject;
 		_dataObjectDir
 	];
 	publicVariableServer "un_database_savePlayerBase";
-	//hint "Base Saved!";
 ///============================================//

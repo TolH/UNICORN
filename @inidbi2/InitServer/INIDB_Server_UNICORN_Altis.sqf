@@ -34,6 +34,8 @@ waitUntil {time > 0};
 		{
 			["write", ["INFO", "Name", _dataplayrname]] call _inidbiUN;
 			["write", ["INFO", "UID", _dataplayruid]] call _inidbiUN;
+			["write", ["INFO", "Level", 1]] call _inidbiUN;
+			["write", ["INFO", "XP", 0]] call _inidbiUN;
 			["write", ["INFO", "Position", _dataplayrpos]] call _inidbiUN;
 			["write", ["INFO", "Direction", _dataplayrdir]] call _inidbiUN;
 			["write", ["INFO", "Health", 0]] call _inidbiUN;
@@ -60,7 +62,7 @@ waitUntil {time > 0};
 			{
 				_readObjPos = ["read", ["1", "Position", []]] call _inidbiUNBase;
 				_AllBaseObj = nearestObjects [[_readObjPos select 0, _readObjPos select 1, 0], ["ALL"], 25];//RANGE HERE TO BE MODIFIED DEPENDING ON PLAYER LEVEL
-				//SPAWN BASE IF CUREENT OBJECT NUMBER DOESNT MATCHES THE NUMBER IN DATABASE COUNT
+				//SPAWN BASE IF CURRENT OBJECT NUMBER DOESNT MATCHES THE NUMBER IN DATABASE COUNT: NOT GOOD NEED BETTER OPTION
 				if (count _AllBaseObj < _readObjectCount) then 
 				{
 					_indexNumber = 1;
@@ -99,6 +101,8 @@ waitUntil {time > 0};
 			_readThirst = ["read", ["RAVAGE", "Thirst", ""]] call _inidbiUN;
 			_readHunger = ["read", ["RAVAGE", "Hunger", ""]] call _inidbiUN;
 			_readRadiation = ["read", ["RAVAGE", "Radiation", ""]] call _inidbiUN;
+			_readcurLevel = ["read", ["INFO", "Level", ""]] call _inidbiUN;
+			_readcurXP = ["read", ["INFO", "XP", ""]] call _inidbiUN;
 			un_database_load = 
 			[
 				_readpos,
@@ -108,7 +112,9 @@ waitUntil {time > 0};
 				_readCurrentmoney,
 				_readThirst,
 				_readHunger,
-				_readRadiation
+				_readRadiation,
+				_readcurLevel,
+				_readcurXP
 			];
 			_dataplayrowner publicVariableClient "un_database_load";
 		};
@@ -166,7 +172,7 @@ waitUntil {time > 0};
     };
 //============================================//
 //HANDLE PLAYER MONEY ADDED AND REMOVED
-    "un_database_saveMoney" addPublicVariableEventHandler 
+    "un_database_saveMoneyLvlXp" addPublicVariableEventHandler 
 	{
 		private ["_packet"];
         _packet = _this select 1;
@@ -176,19 +182,27 @@ waitUntil {time > 0};
         _inidbiUN = ["new", _databasename] call OO_INIDBI;
 		_readcurmoney = ["read", ["INFO", "Money", ""]] call _inidbiUN;
 		_newmoneyamount = _readcurmoney + (_packet select 3);
+		_readcurLevel = ["read", ["INFO", "Level", ""]] call _inidbiUN;
+		_readcurXP = ["read", ["INFO", "XP", ""]] call _inidbiUN;
+		_newXPamount = _readcurXP + (_packet select 4);
+		//FOR MONEY STUFF
 		if (_newmoneyamount >= 0) then 
 		{
 			["write", ["INFO", "Name", _packet select 1]] call _inidbiUN;
 			["write", ["INFO", "UID", _packet select 2]] call _inidbiUN;
 			["write", ["INFO", "Money", _newmoneyamount]] call _inidbiUN;
+			["write", ["INFO", "XP", _newXPamount]] call _inidbiUN;
 			_readcurmoney = ["read", ["INFO", "Money", ""]] call _inidbiUN;
-			diag_log format ["-=TIMSBR diag_log: (%1)-(%2) ACTIVATED MONEY FUNCTION WITH: (%3)$  TOTAL MONEY: (%4)$=-", _packet select 2, _packet select 1, _packet select 3, _readcurmoney];
+			_readcurXP = ["read", ["INFO", "XP", ""]] call _inidbiUN;
+			diag_log format ["-=TIMSBR diag_log: (%1)-(%2) ACTIVATED MONEY FUNCTION WITH: (%3)$  TOTAL MONEY: (%4)$ XP: (%5)=-", _packet select 2, _packet select 1, _packet select 3, _readcurmoney, _readcurXP];
 			//SEND MONEY INFO BACK TO PLAYER
-			un_database_loadMoney = 
+			un_database_loadMoneyLvlXp = 
 			[
-				_readcurmoney
+				_readcurmoney,
+				_readcurXP,
+				_readcurLevel
 			];
-			_dataplayrowner publicVariableClient "un_database_loadMoney";
+			_dataplayrowner publicVariableClient "un_database_loadMoneyLvlXp";
 		};
 	};
 //============================================//
@@ -223,7 +237,7 @@ waitUntil {time > 0};
         _inidbiUN = ["new", _databasename] call OO_INIDBI;
 		_SendServerResponse = ["read", ["INFO", "Name", _packet select 1]] call _inidbiUN;
 		diag_log format ["-===========TIMSBR SUBMITBOX: (%1)_(%2) ***%3***",_packet select 1, _packet select 2, _dataplayerMSG];
-		//SEND MONEY INFO BACK TO PLAYER
+		//SEND SERVER MSG BACK TO PLAYER
 		un_database_loadSubmitBox = 
 		[
 			_SendServerResponse

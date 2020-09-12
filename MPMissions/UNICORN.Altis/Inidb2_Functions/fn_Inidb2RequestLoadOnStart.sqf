@@ -105,7 +105,7 @@
 		CurrentMoneyAmount = _readCurrentmoney;
 		[[0.65, 1, 0.2, 0.15], 1.0, true, _readCurrentmoney] call BRG_fnc_Activate_GUI_MONEY;
 		un_database_load = nil;
-		publicVariable "un_database_load";
+		//publicVariable "un_database_load";
 		hint "Character loaded Successfully";
 		player switchCamera "EXTERNAL";
 		titleFadeOut 5;
