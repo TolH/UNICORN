@@ -1,30 +1,32 @@
 //FIND SET RIGHT DIALOG
-_ctrl = (findDisplay 5555) displayCtrl 2;
+private _ctrl = (findDisplay 5555) displayCtrl 2;
 	//CHECK PLAYER SELECTED ITEM
-	_index = lbCurSel 2;
-	_objectSelected = lbText [2, _index];
+	private _index = lbCurSel 2;
+	private _objectSelected = lbText [2, _index];
 	//DO SOME STRING MAGIC TO BE ABLE TO GET PRICE INFO AND OBJECT NAME WITHIN THE SAME STRING
-	_cnt = count _objectSelected;
-	_newObjectStringCut = _objectSelected select [5, _cnt];
-	_objectPrice = _objectSelected select [0, 5];
-	_objectPriceToString = _objectPrice call BIS_fnc_parseNumber;
+	private _cnt = count _objectSelected;
+	private _newObjectStringCut = _objectSelected select [5, _cnt];
+	private _objectPrice = _objectSelected select [0, 5];
+	private _objectPriceToString = _objectPrice call BIS_fnc_parseNumber;
 	//CHECK IF PLAYER HAS ENOUGH MONEY
-	_playerHasMoney = CurrentMoneyAmount - _objectPriceToString;
+	private _playerHasMoney = CurrentMoneyAmount - _objectPriceToString;
+	//ADD CHECK IF BASE STARTER ITEM ARE AROUND BEFORE BUILDING OBJECT.
+	private _hasBaseStarter = nearestObjects [player, ["EFM_mobile_dragons_teeth_small_orange"], 25];//RANGE HERE TO BE MODIFIED DEPENDING ON PLAYER LEVEL
 	//CREATE PLAYER SELECTED OBJECT
-	if (_playerHasMoney >= 0) then 
+	if ((_playerHasMoney >= 0) && (count _hasBaseStarter == 1)) then 
 	{
 		//PUT PLAYER IN BUILD MODE
 		PLAYERISBUILDING = 1;
-		_ObjAtPlayerPos = getPosATL player;
-		_buildObject = createVehicle [_newObjectStringCut, [_ObjAtPlayerPos select 0, (_ObjAtPlayerPos select 1)+3, (_ObjAtPlayerPos select 2)+1], [], 0, "CAN_COLLIDE"];
+		private _ObjAtPlayerPos = getPosATL player;
+		private _buildObject = createVehicle [_newObjectStringCut, [_ObjAtPlayerPos select 0, (_ObjAtPlayerPos select 1)+3, (_ObjAtPlayerPos select 2)+1], [], 0, "CAN_COLLIDE"];
 		_buildObject attachto [player, [0,3,1]];
 		closeDialog 5555;
-		hint "PRESS (SPACE) TO PLACE THAT OBJECT.";
+		hint format ["PRESS (SPACE) TO PLACE THAT OBJECT.\nUSE ARROW KEYS TO MOVE OBJECT.\nESC TO CANCEL."];
 		//LOOP HERE TO BE ABLE TO TRACK KEYPRESS AND MOVING OBJECT WITH ATTACH POS
 		//_ObjAtPlayerPos setVectorDirAndUp [[0.5, 0.5, 0], [-0.5, 0.5, 0]];
 		//private _CurrentRotatedirVector = vectorDir _buildObject;
-		_defaultAttachPosUPandDOWN = 1;
-		_CurrentRotatedirVector = getDir _buildObject;
+		private _defaultAttachPosUPandDOWN = 1;
+		private _CurrentRotatedirVector = getDir _buildObject;
 		while {PLAYERISBUILDING == 1} do 
 		{
 			//UP
@@ -81,6 +83,13 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 		};
 	} else
 	{
-		hint "Not enough $$$ \nSelect something else.";
+		if (count _hasBaseStarter == 1) then
+		{
+			hint "Not enough $$$\nSelect something else.";
+		} else
+		{
+			hint "Out of range.\nOr no base starter object around";
+			closeDialog 5555;
+		};
 	};
 
