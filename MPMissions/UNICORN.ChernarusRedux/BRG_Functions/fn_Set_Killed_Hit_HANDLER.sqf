@@ -39,7 +39,7 @@ if ((_request == 2) || (_request == 3))  then
 		_Killed_GUI_Money setVelocity [_speed * sin(_dir), _speed * cos(_dir),4];
 		playSound "HITSFX";
 		[] call BRG_fnc_Killed_GUI_Draw3D;
-		[_Reward_Give_Money] call INIDB2_fnc_Inidb2RequestSaveMoney;
+		[_Reward_Give_Money,0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 		hint format ["%1 $", _Reward_Give_Money];
 		[_Killed_GUI_Money] execVM "BRG_Functions\GUI_SCRIPTS\REMOVE_Killed_GUI.sqf";
 	}];

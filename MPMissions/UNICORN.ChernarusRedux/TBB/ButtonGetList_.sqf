@@ -2,7 +2,7 @@
 	_ctrl = (findDisplay 5555) displayCtrl 2;
 	lbClear _ctrl;
 //CHECK DATABASE PLAYER MONEY INFO BEFORE PUTTING PRICE UP
-	[0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
+	[0,0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 	_playerMoney = CurrentMoneyAmount;
 //BASE BUILDING TEMP OBJECTS LISTS
 	_objectsList = [

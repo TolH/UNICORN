@@ -12,7 +12,7 @@ _MainCrate = _this select 0;
 	playSound _PlayRandomSound;
 	deleteVehicle _MainCrate;
 	private _Reward_Give_Money = round (1000 + random 4000);
-	[_Reward_Give_Money] call INIDB2_fnc_Inidb2RequestSaveMoney;
+	[_Reward_Give_Money,0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 	hint format ["+%1 $", _Reward_Give_Money];
 //============================================//
 // 1=PISTOL 2=RIFFLE 3=SMG
