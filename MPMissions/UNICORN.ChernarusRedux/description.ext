@@ -80,7 +80,7 @@ class CfgFunctions
 			class Inidb2RequestLoadOnStart {}; 		// [] call INIDB2_fnc_Inidb2RequestLoadOnStart;
 			class Inidb2RequestSavePlayer {};  		// [] call INIDB2_fnc_Inidb2RequestSavePlayer;
 			class Inidb2RequestSavePlayerBase {};  	// [_object] call INIDB2_fnc_Inidb2RequestSavePlayerBase;
-			class Inidb2RequestSaveMoneyLvlXp {};  	// [MoneyAmount,_request] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
+			class Inidb2RequestSaveMoneyLvlXp {};  	// [MoneyAmount,XPamount] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 			class Inidb2RequestResetPlayer {}; 		// [] call INIDB2_fnc_Inidb2RequestResetPlayer;
 			class Inidb2RequestSubmitBox {};  		// [_SubmitTxt] call INIDB2_fnc_Inidb2RequestSubmitBox;
 		};

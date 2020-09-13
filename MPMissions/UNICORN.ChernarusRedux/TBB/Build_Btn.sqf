@@ -73,7 +73,7 @@ _ctrl = (findDisplay 5555) displayCtrl 2;
 			TBBdialogMain = 0;
 		} else
 		{
-			[-_objectPriceToString] call INIDB2_fnc_Inidb2RequestSaveMoney;
+			[-_objectPriceToString] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 			detach _buildObject;
 			//SAVE OBJECTS TO DATABASE
 			[_buildObject] call INIDB2_fnc_Inidb2RequestSavePlayerBase;

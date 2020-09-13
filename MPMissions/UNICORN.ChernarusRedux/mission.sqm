@@ -12,10 +12,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={10605.151,209.96748,4636.5762};
-		dir[]={-0.92826003,-0.17364821,-0.32890123};
-		up[]={-0.16367716,0.98480779,-0.057994105};
-		aside[]={-0.33397594,-3.7252903e-009,0.94257975};
+		pos[]={10593.894,218.48531,4581.2568};
+		dir[]={0.81022263,-0.40910968,0.4197273};
+		up[]={0.36326066,0.91248471,0.18818344};
+		aside[]={0.459984,-2.3600296e-007,-0.88792968};
 	};
 };
 binarizationWanted=0;
@@ -88,7 +88,7 @@ class Mission
 			name="respawn_resistance";
 			type="respawn_unknown";
 			colorName="ColorGUER";
-			angle=314.30942;
+			angle=314.30939;
 			id=0;
 			atlOffset=4.7683716e-007;
 		};
@@ -2055,11 +2055,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={3688.127,1492.5787,15567.325};
+				position[]={3688.127,1492.5791,15567.325};
 			};
 			id=42;
 			type="Ravage_atmosphere";
-			atlOffset=369.93567;
+			atlOffset=369.93604;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2153,7 +2153,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -2389,11 +2389,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={4329.7305,975.73145,14445.302};
+				position[]={4329.73,975.73181,14445.302};
 			};
 			id=44;
 			type="Ravage_survival";
-			atlOffset=368.74652;
+			atlOffset=368.74701;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2518,11 +2518,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={1763.3145,1001.4972,14413.243};
+				position[]={1763.314,1001.4977,14413.243};
 			};
 			id=45;
 			type="Ravage_loot";
-			atlOffset=371.63159;
+			atlOffset=371.63196;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2799,11 +2799,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={3021.6914,1470.3268,16673.535};
+				position[]={3021.6909,1470.3268,16673.535};
 			};
 			id=46;
 			type="Ravage_gearPool";
-			atlOffset=371.63159;
+			atlOffset=371.63196;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2916,7 +2916,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=2;
 						};
 					};
 				};

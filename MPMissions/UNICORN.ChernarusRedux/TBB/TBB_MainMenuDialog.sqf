@@ -6,7 +6,7 @@
 	lbClear _ctrl;
 	TBBdialogMain = 0;
 //CHECK DATABASE PLAYER MONEY INFO BEFORE PUTTING PRICE UP
-	[0] call INIDB2_fnc_Inidb2RequestSaveMoney;
+	[0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
 	private _playerMoney = CurrentMoneyAmount;
 //BASE BUILDING TEMP OBJECTS LISTS
 	private _objectsListMain = [
