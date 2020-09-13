@@ -18,14 +18,7 @@ waitUntil {time > 0};
 		_Ravage_starting_Foods_Items1 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
 		_Ravage_starting_Foods_Items2 = ["rvg_purificationTablets","rvg_beans","rvg_bacon","rvg_milk","rvg_rice","rvg_plasticBottlePurified","rvg_canteen","rvg_spirit","rvg_franta"] call BIS_fnc_selectRandom;
 		_dataNewUnitLoadout = [[],[],[],["U_IG_Guerilla1_1",[[""],["rvg_Geiger",1,1],["rvg_canOpener",1,1],[_Ravage_starting_Foods_Items1,1,1],[_Ravage_starting_Foods_Items2,1,1]]],[],[],"","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch",""]];
-		_random_FirstSpawn_Zone = 
-			[
-				"respawn_resistance_1","respawn_resistance_2","respawn_resistance_3","respawn_resistance_4","respawn_resistance_5",
-				"respawn_resistance_6","respawn_resistance_7","respawn_resistance_8","respawn_resistance_9","respawn_resistance_10","respawn_resistance_11",
-				"respawn_resistance_12","respawn_resistance_13","respawn_resistance_14","respawn_resistance_15","respawn_resistance_16","respawn_resistance_17",
-				"respawn_resistance_18","respawn_resistance_19","respawn_resistance_20","respawn_resistance_21"
-			] call BIS_fnc_selectRandom;
-		_dataplayrpos = getMarkerPos _random_FirstSpawn_Zone;
+		_dataplayrpos = getMarkerPos "respawn_resistance";
 		_dataplayrdir = round(random 360);
 		_inidbiUN = ["new", _databasename] call OO_INIDBI;
 		_inidbiUNBase = ["new", _databasenameBase] call OO_INIDBI;
