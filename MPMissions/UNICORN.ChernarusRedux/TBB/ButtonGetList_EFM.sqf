@@ -1,10 +1,10 @@
+//CHECK DATABASE PLAYER MONEY INFO BEFORE PUTTING PRICE UP
+	[0,0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
+	private _playerMoney = CurrentMoneyAmount;
 //FIND SET CURRENT DISPLAY
 	private _ctrl = (findDisplay 5555) displayCtrl 2;
 	lbClear _ctrl;
 	TBBdialogMain = 1;
-//CHECK DATABASE PLAYER MONEY INFO BEFORE PUTTING PRICE UP
-	[0,0] call INIDB2_fnc_Inidb2RequestSaveMoneyLvlXp;
-	private _playerMoney = CurrentMoneyAmount;
 //BASE BUILDING TEMP OBJECTS LISTS
 	private _objectsListEFM = [
 		["100 ", "EFM_beam_wood_angular_bearer_01"],
@@ -69,6 +69,7 @@
 		["100 ", "EFM_mobile_barrier_A"],
 		["100 ", "EFM_mobile_barrier_B"],
 		["1000", "EFM_mobile_dragons_teeth_small"],
+		["1000", "EFM_mobile_dragons_teeth_small_orange"],
 		["100 ", "EFM_pole_B_01_yellow"],
 		["100 ", "EFM_pole_B_02_black"],
 		["100 ", "EFM_pole_B_03_black_white"],

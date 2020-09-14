@@ -11,9 +11,10 @@ private _ctrl = (findDisplay 5555) displayCtrl 2;
 	//CHECK IF PLAYER HAS ENOUGH MONEY
 	private _playerHasMoney = CurrentMoneyAmount - _objectPriceToString;
 	//ADD CHECK IF BASE STARTER ITEM ARE AROUND BEFORE BUILDING OBJECT.
-	private _hasBaseStarter = nearestObjects [player, ["EFM_mobile_dragons_teeth_small_orange"], 25];//RANGE HERE TO BE MODIFIED DEPENDING ON PLAYER LEVEL
+	//private _hasBaseStarter = nearestObjects [player, ["EFM_mobile_dragons_teeth_small_orange"], 25];//RANGE HERE TO BE MODIFIED DEPENDING ON PLAYER LEVEL
 	//CREATE PLAYER SELECTED OBJECT
-	if ((_playerHasMoney >= 0) && (count _hasBaseStarter == 1)) then 
+	//if ((_playerHasMoney >= 0) && (count _hasBaseStarter == 1)) then 
+	if (_playerHasMoney >= 0) then 
 	{
 		//PUT PLAYER IN BUILD MODE
 		PLAYERISBUILDING = 1;
@@ -83,13 +84,6 @@ private _ctrl = (findDisplay 5555) displayCtrl 2;
 		};
 	} else
 	{
-		if (count _hasBaseStarter == 1) then
-		{
-			hint "Not enough $$$\nSelect something else.";
-		} else
-		{
-			hint "Out of range.\nOr no base starter object around";
-			closeDialog 5555;
-		};
+		hint "Not enough $$$\nSelect something else.";
 	};
 
